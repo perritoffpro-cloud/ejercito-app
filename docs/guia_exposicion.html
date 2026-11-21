@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Guía Oficial de Exposición del Backend - Ejército del Perú</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 12mm 12mm 12mm 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.42;
+      font-size: 8.8pt;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Portada / Header */
+    .header-banner {
+      background: linear-gradient(135deg, #7f0000 0%, #a00b1a 60%, #c41829 100%);
+      color: #ffffff;
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border-left: 6px solid #d4af37;
+    }
+
+    .badge-militar {
+      display: inline-block;
+      background: #d4af37;
+      color: #1e293b;
+      font-weight: 800;
+      font-size: 7.5pt;
+      letter-spacing: 1.2px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .header-banner h1 {
+      margin: 2px 0 4px 0;
+      font-size: 16pt;
+      font-weight: 800;
+      letter-spacing: -0.4px;
+      line-height: 1.15;
+    }
+
+    .header-banner p {
+      margin: 0;
+      font-size: 9pt;
+      opacity: 0.95;
+      font-weight: 400;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 8pt;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: #ffd700;
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Headings */
+    h2 {
+      font-size: 11pt;
+      font-weight: 700;
+      color: #7f0000;
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 3px;
+      margin: 12px 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    h2 .num {
+      background: #7f0000;
+      color: #fff;
+      font-size: 8pt;
+      font-weight: 700;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h3 {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #0f172a;
+      margin: 8px 0 4px 0;
+    }
+
+    p {
+      margin: 0 0 6px 0;
+      text-align: justify;
+    }
+
+    /* Tarjetas y Contenedores */
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+    }
+
+    .card-highlight {
+      border-left: 4px solid #7f0000;
+      background: #fffafa;
+    }
+
+    .card-gold {
+      border-left: 4px solid #d4af37;
+      background: #fffdf5;
+    }
+
+    .card-blue {
+      border-left: 4px solid #0284c7;
+      background: #f0f9ff;
+    }
+
+    .guion-box {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 4px solid #16a34a;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin: 8px 0;
+      color: #14532d;
+      font-size: 8.5pt;
+    }
+
+    .guion-box strong {
+      color: #15803d;
+      display: inline-block;
+      margin-bottom: 2px;
+    }
+
+    /* Tablas */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0 10px 0;
+      font-size: 8pt;
+    }
+
+    th, td {
+      padding: 5px 8px;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+    }
+
+    th {
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 7.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 7pt;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .badge-get { background: #e0f2fe; color: #0369a1; }
+    .badge-post { background: #dcfce7; color: #15803d; }
+    .badge-put { background: #fef3c7; color: #b45309; }
+    .badge-del { background: #fee2e2; color: #b91c1c; }
+
+    /* Código */
+    code, pre {
+      font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+    }
+
+    code {
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 1px 4px;
+      border-radius: 3px;
+      font-size: 8pt;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 7.5pt;
+      line-height: 1.4;
+      margin: 6px 0 8px 0;
+      border-left: 3px solid #7f0000;
+    }
+
+    .comment { color: #64748b; font-style: italic; }
+    .keyword { color: #f472b6; font-weight: 600; }
+    .string { color: #34d399; }
+    .func { color: #60a5fa; }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .page-footer {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 4px;
+      margin-top: 10px;
+      font-size: 7pt;
+      color: #94a3b8;
+    }
+
+    .faq-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      padding: 8px 12px;
+    }
+
+    .faq-q {
+      font-weight: 700;
+      color: #7f0000;
+      font-size: 8.5pt;
+      margin-bottom: 4px;
+    }
+
+    .faq-a {
+      font-size: 8.2pt;
+      color: #334155;
+      line-height: 1.4;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0;
+    }
+
+    .checklist li {
+      padding: 2px 0 2px 20px;
+      position: relative;
+      font-size: 8.2pt;
+    }
+
+    .checklist li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #16a34a;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== PÁGINA 1 ==================== -->
+  <div class="header-banner">
+    <div class="badge-militar">Documento Técnico Oficial · Defensa de Proyecto</div>
+    <h1>Centro de Mando · Ejército del Perú</h1>
+    <p>Manual Maestro de Exposición Técnica del Backend, Arquitectura de Datos y Transacciones ACID</p>
+    <div class="meta-grid">
+      <div class="meta-item"><strong>Entorno</strong>Node.js v20+ / ES Modules</div>
+      <div class="meta-item"><strong>Framework</strong>Express.js RESTful API</div>
+      <div class="meta-item"><strong>Base de Datos</strong>MySQL 8.0 (InnoDB)</div>
+      <div class="meta-item"><strong>Conexión</strong>mysql2 / Promise Pool</div>
+    </div>
+  </div>
+
+  <h2><span class="num">1</span> Visión General y Propósito del Backend</h2>
+  <p>
+    El backend del <strong>Centro de Mando del Ejército del Perú</strong> centraliza, valida y sirve de forma transaccional toda la información operativa institucional: control de cadetes, cronograma de entrenamientos físicos y tácticos, calendario de eventos militares y admisión de nuevos reclutas con validación médica previa.
+  </p>
+
+  <h2><span class="num">2</span> Arquitectura de Archivos y Responsabilidades</h2>
+  <p>
+    Siguiendo estándares de desarrollo profesional, el sistema elimina redundancias y micro-archivos dispersos agrupando la lógica en dos módulos de alta cohesión:
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Archivo</th>
+        <th style="width: 35%;">Responsabilidad Técnica</th>
+        <th style="width: 40%;">Principios y Patrones Aplicados</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>server/db.js</code></td>
+        <td>Gestión del Pool de conexiones MySQL y mapeo estricto de tipos de fecha.</td>
+        <td>Patrón Singleton de Pool, desacoplamiento con <code>.env</code>, solución de desfase horario UTC.</td>
+      </tr>
+      <tr>
+        <td><code>server/index.js</code></td>
+        <td>API RESTful Express, CRUD genérico, transacciones ACID y gestión de archivos.</td>
+        <td>Principio DRY (Factory Pattern), sentencias preparadas contra SQL Injection, rollback seguro.</td>
+      </tr>
+      <tr>
+        <td><code>database/ejercito_bd.sql</code></td>
+        <td>Esquema DDL relacional maestro, llaves foráneas con integridad referencial y seeds.</td>
+        <td>Normalización 3NF, motor transaccional InnoDB, juego de caracteres <code>utf8mb4</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">3</span> Conexión y Pool de Base de Datos (<code>server/db.js</code>)</h2>
+  <p>
+    En producción, una aplicación profesional jamás abre y cierra conexiones por petición. Se implementó un <strong>Pool de conexiones persistentes</strong> con <code>mysql2/promise</code>:
+  </p>
+
+<pre><span class="keyword">import</span> mysql <span class="keyword">from</span> <span class="string">'mysql2/promise'</span>;
+<span class="keyword">import</span> <span class="string">'dotenv/config'</span>;
+
+<span class="keyword">export const</span> pool = mysql.<span class="func">createPool</span>({
+  host: process.env.DB_HOST || <span class="string">'localhost'</span>,
+  port: Number(process.env.DB_PORT) || <span class="string">3306</span>,
+  user: process.env.DB_USER || <span class="string">'root'</span>,
+  password: process.env.DB_PASS || <span class="string">''</span>,
+  database: process.env.DB_NAME || <span class="string">'ejercito_bd'</span>,
+  dateStrings: <span class="keyword">true</span>,        <span class="comment">// 👈 Crucial: Devuelve fechas YYYY-MM-DD sin desfases por zona horaria</span>
+  connectionLimit: <span class="string">10</span>,      <span class="comment">// 👈 Capacidad para atender hasta 10 clientes concurrentes instantáneos</span>
+});</pre>
+
+  <div class="guion-box">
+    <strong>🗣️ Qué decir en este punto:</strong><br>
+    <em>"Profesor, en <code>server/db.js</code> configuramos un <strong>Pool de 10 conexiones</strong> con <code>mysql2/promise</code>. Esto optimiza drásticamente el rendimiento reutilizando sockets TCP abiertos en memoria. Además, activamos <code>dateStrings: true</code> para resolver de raíz el clásico desfase de zona horaria de JavaScript, garantizando que las fechas de eventos y nacimientos se muestren exactamente como están registradas en Perú."</em>
+  </div>
+
+  <div class="page-footer">
+    <span>Centro de Mando · Ejército del Perú</span>
+    <span>Página 1 de 4</span>
+  </div>
+
+  <!-- ==================== PÁGINA 2 ==================== -->
+  <div class="page-break"></div>
+
+  <h2><span class="num">4</span> Arquitectura DRY: La Función Fábrica <code>crud()</code></h2>
+  <p>
+    En lugar de duplicar 80 líneas de código para cada entidad (Cadetes, Rutinas, Eventos, Inscripciones), creamos en <code>server/index.js</code> un <strong>generador de controladores RESTful (Factory Pattern)</strong>:
+  </p>
+
+  <div class="card card-blue">
+    <strong>Beneficios Técnicos de la Fábrica <code>crud()</code>:</strong>
+    <ul style="margin: 4px 0 0 0; padding-left: 16px; font-size: 8pt;">
+      <li><strong>Inmunidad contra SQL Injection:</strong> 100% de consultas parametrizadas con marcadores de posición <code>?</code>.</li>
+      <li><strong>Validaciones Centralizadas:</strong> DNI estrictamente validado a 8 dígitos numéricos mediante Regex.</li>
+      <li><strong>Higiene de Archivos:</strong> La función <code>deleteOldImage()</code> elimina fotos huérfanas en <code>/assets</code> al actualizar o borrar.</li>
+    </ul>
+  </div>
+
+<pre><span class="func">mount</span>(<span class="string">'/cadetes'</span>, <span class="func">crud</span>(<span class="string">'cadetes'</span>,
+  [<span class="string">'nombres'</span>, <span class="string">'apellidos'</span>, <span class="string">'dni'</span>, <span class="string">'rango_id'</span>, <span class="string">'nivel'</span>, <span class="string">'fisico'</span>, <span class="string">'tactico'</span>, <span class="string">'disciplina'</span>, <span class="string">'unidad'</span>, <span class="string">'fecha_ingreso'</span>, <span class="string">'imagen'</span>],
+  { select: <span class="string">'SELECT cadetes.*, rangos.nombre AS rango, rangos.orden FROM cadetes JOIN rangos ON rangos.id = cadetes.rango_id'</span>,
+    order: <span class="string">'rangos.orden DESC, cadetes.apellidos'</span> }));
+
+<span class="func">mount</span>(<span class="string">'/rutinas'</span>, <span class="func">crud</span>(<span class="string">'rutinas'</span>, [<span class="string">'titulo'</span>, <span class="string">'tipo'</span>, <span class="string">'frecuencia'</span>, <span class="string">'dia_semana'</span>, <span class="string">'hora'</span>, <span class="string">'duracion_min'</span>, <span class="string">'rango_id'</span>, <span class="string">'nivel'</span>, <span class="string">'descripcion'</span>, <span class="string">'imagen'</span>]));
+<span class="func">mount</span>(<span class="string">'/eventos'</span>, <span class="func">crud</span>(<span class="string">'eventos'</span>, [<span class="string">'titulo'</span>, <span class="string">'tipo'</span>, <span class="string">'fecha'</span>, <span class="string">'hora'</span>, <span class="string">'lugar'</span>, <span class="string">'descripcion'</span>, <span class="string">'imagen'</span>]));
+<span class="func">mount</span>(<span class="string">'/inscripciones'</span>, <span class="func">crud</span>(<span class="string">'inscripciones'</span>, [<span class="string">'nombres'</span>, <span class="string">'apellidos'</span>, <span class="string">'dni'</span>, <span class="string">'fecha_nacimiento'</span>, <span class="string">'telefono'</span>, <span class="string">'direccion'</span>, <span class="string">'talla_cm'</span>, <span class="string">'peso_kg'</span>, <span class="string">'eval_medica'</span>, <span class="string">'eval_fisica'</span>, <span class="string">'estado'</span>, <span class="string">'imagen'</span>]));</pre>
+
+  <h2><span class="num">5</span> La Joya del Backend: Transacciones ACID y Concurrencia</h2>
+  <p>
+    El punto de mayor valor técnico del proyecto es la incorporación de postulantes (<code>POST /api/inscripciones/:id/aprobar</code>):
+  </p>
+
+<pre><span class="keyword">app</span>.<span class="func">post</span>(<span class="string">'/api/inscripciones/:id/aprobar'</span>, <span class="func">wrap</span>(<span class="keyword">async</span> (req, res) => {
+  <span class="keyword">const</span> conn = <span class="keyword">await</span> pool.<span class="func">getConnection</span>(); <span class="comment">// 1. Conexión dedicada del pool</span>
+  <span class="keyword">try</span> {
+    <span class="keyword">await</span> conn.<span class="func">beginTransaction</span>(); <span class="comment">// 2. INICIO DE TRANSACCIÓN ATÓMICA</span>
+
+    <span class="comment">// 3. BLOQUEO PESIMISTA: Previene condiciones de carrera si dos administradores aprueban al mismo tiempo</span>
+    <span class="keyword">const</span> [[i]] = <span class="keyword">await</span> conn.<span class="func">query</span>(<span class="string">'SELECT * FROM inscripciones WHERE id=? FOR UPDATE'</span>, [req.params.id]);
+    <span class="keyword">if</span> (!i) <span class="keyword">return</span> res.<span class="func">status</span>(404).<span class="func">json</span>({ error: <span class="string">'Inscripción no encontrada'</span> });
+    <span class="keyword">if</span> (i.estado === <span class="string">'Aprobado'</span>) <span class="keyword">return</span> res.<span class="func">status</span>(409).<span class="func">json</span>({ error: <span class="string">'El postulante ya fue aprobado'</span> });
+    <span class="keyword">if</span> (!i.eval_medica?.<span class="func">startsWith</span>(<span class="string">'Apto'</span>)) {
+      <span class="keyword">return</span> res.<span class="func">status</span>(400).<span class="func">json</span>({ error: <span class="string">'Se requiere evaluación médica "Apto" para aprobar'</span> });
+    }
+
+    <span class="comment">// 4. Buscamos el rango inicial "Soldado"</span>
+    <span class="keyword">const</span> [[soldado]] = <span class="keyword">await</span> conn.<span class="func">query</span>(<span class="string">"SELECT id FROM rangos WHERE nombre='Soldado'"</span>);
+
+    <span class="comment">// 5. Insertamos al nuevo cadete con su calificación física de ingreso</span>
+    <span class="keyword">const</span> [c] = <span class="keyword">await</span> conn.<span class="func">query</span>(
+      `<span class="string">INSERT INTO cadetes (nombres,apellidos,dni,rango_id,nivel,fisico,tactico,disciplina,unidad,fecha_ingreso,imagen)
+       VALUES (?,?,?,?, 'Nuevo', ?, 0, 0, 'Centro de Instrucción', CURDATE(), ?)</span>`,
+      [i.nombres, i.apellidos, i.dni, soldado.id, i.eval_fisica || 0, i.imagen]);
+
+    <span class="comment">// 6. Vinculamos el ID del cadete y marcamos como aprobado</span>
+    <span class="keyword">await</span> conn.<span class="func">query</span>(<span class="string">"UPDATE inscripciones SET estado='Aprobado', cadete_id=? WHERE id=?"</span>, [c.insertId, i.id]);
+
+    <span class="keyword">await</span> conn.<span class="func">commit</span>(); <span class="comment">// 7. CONFIRMACIÓN ATÓMICA DE AMBAS OPERACIONES</span>
+    res.<span class="func">json</span>({ ok: <span class="keyword">true</span>, cadete_id: c.insertId });
+  } <span class="keyword">catch</span> (e) {
+    <span class="keyword">await</span> conn.<span class="func">rollback</span>(); <span class="comment">// 8. Si algo falla, se cancela y revierte todo</span>
+    <span class="keyword">throw</span> e;
+  } <span class="keyword">finally</span> {
+    conn.<span class="func">release</span>(); <span class="comment">// 9. Devolvemos la conexión al pool</span>
+  }
+}));</pre>
+
+  <div class="guion-box">
+    <strong>🗣️ Qué decir en este punto:</strong><br>
+    <em>"Aquí reside el máximo rigor técnico de nuestro backend: la incorporación de postulantes implementa una <strong>Transacción ACID</strong>. Utilizamos la sentencia <code>FOR UPDATE</code> para bloquear la fila en lectura, previniendo condiciones de carrera si dos administradores hicieran clic al mismo tiempo. Si cualquier paso fallara, el bloque <code>catch</code> dispara un <code>rollback()</code> automático impidiendo inconsistencias o registros a medio guardar."</em>
+  </div>
+
+  <div class="page-footer">
+    <span>Centro de Mando · Ejército del Perú</span>
+    <span>Página 2 de 4</span>
+  </div>
+
+  <!-- ==================== PÁGINA 3 ==================== -->
+  <div class="page-break"></div>
+
+  <h2><span class="num">6</span> Guión de Exposición Oral Minuto a Minuto (5 a 7 Minutos)</h2>
+  <p>
+    Estructura recomendada para realizar una defensa oral fluida, profesional y convincente:
+  </p>
+
+  <div class="card card-highlight">
+    <strong style="color: #7f0000;">⏱️ Minuto 1: Introducción y Arquitectura General</strong>
+    <p style="font-size: 8.2pt; margin: 2px 0 0 0;">
+      <em>"Buenos días, profesor y miembros del jurado. Hoy presentaré el backend del Centro de Mando del Ejército del Perú. Desarrollamos un servicio web RESTful construido con <strong>Node.js</strong> y <strong>Express</strong> sobre una base de datos relacional <strong>MySQL 8</strong>. El objetivo del diseño fue lograr máxima robustez, arquitectura modular DRY y estricta integridad referencial."</em>
+    </p>
+  </div>
+
+  <div class="card">
+    <strong style="color: #0f172a;">⏱️ Minuto 2: Manejo de Conexiones y Rendimiento (server/db.js)</strong>
+    <p style="font-size: 8.2pt; margin: 2px 0 0 0;">
+      <em>"En <code>server/db.js</code> configuramos un <strong>Pool de 10 conexiones</strong> con <code>mysql2/promise</code>. Esto evita abrir y cerrar sockets TCP por cada petición, reduciendo la latencia a milisegundos. Añadimos <code>dateStrings: true</code> para resolver de forma definitiva el problema de zonas horarias de JavaScript y mantener las fechas consistentes con la hora peruana."</em>
+    </p>
+  </div>
+
+  <div class="card">
+    <strong style="color: #0f172a;">⏱️ Minuto 3: Modularidad y Seguridad contra SQL Injection (server/index.js)</strong>
+    <p style="font-size: 8.2pt; margin: 2px 0 0 0;">
+      <em>"En lugar de repetir el código CRUD en cada módulo, diseñamos la fábrica <code>crud()</code>. Esta genera los endpoints RESTful para Cadetes, Rutinas, Eventos e Inscripciones. El 100% de consultas utilizan <strong>sentencias preparadas con signos de interrogación (?)</strong>, lo que hace al sistema totalmente inmune a ataques de SQL Injection."</em>
+    </p>
+  </div>
+
+  <div class="card card-gold">
+    <strong style="color: #854d0e;">⏱️ Minuto 4: Lógica de Negocio y Transacciones ACID</strong>
+    <p style="font-size: 8.2pt; margin: 2px 0 0 0;">
+      <em>"El flujo más importante es la aprobación del recluta. Aplicamos una <strong>transacción atómica</strong> con <code>conn.beginTransaction()</code> y bloqueo <code>FOR UPDATE</code>. Validamos que su ficha médica esté en estado 'Apto', le asignamos el rango inicial de 'Soldado', creamos su registro de cadete y actualizamos la inscripción, todo en una sola unidad indivisible de trabajo."</em>
+    </p>
+  </div>
+
+  <div class="card">
+    <strong style="color: #0f172a;">⏱️ Minuto 5: Demostración Práctica en Vivo</strong>
+    <p style="font-size: 8.2pt; margin: 2px 0 0 0;">
+      <em>"Podemos comprobar el funcionamiento en vivo ingresando a <code>http://localhost:3000/api/cadetes</code>. Observamos la respuesta JSON en tiempo real con los cadetes registrados, sus notas ponderadas, el JOIN con la tabla de rangos y los enlaces a las fotos servidas desde <code>/assets</code>."</em>
+    </p>
+  </div>
+
+  <h2><span class="num">7</span> Catálogo de Endpoints de la API REST</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 12%;">Método</th>
+        <th style="width: 32%;">Endpoint</th>
+        <th style="width: 40%;">Descripción / Operación de Negocio</th>
+        <th style="width: 16%;">Respuesta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td><code>/api/rangos</code></td>
+        <td>Retorna los 12 rangos militares ordenados jerárquicamente.</td>
+        <td>200 OK</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span></td>
+        <td><code>/api/cadetes</code></td>
+        <td>Lista de cadetes con JOIN a la tabla de rangos.</td>
+        <td>200 OK</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-post">POST</span></td>
+        <td><code>/api/cadetes</code></td>
+        <td>Registra nuevo cadete con validación de DNI de 8 dígitos.</td>
+        <td>201 Created</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-put">PUT</span></td>
+        <td><code>/api/cadetes/:id</code></td>
+        <td>Actualiza datos del cadete y sustituye foto borrando la anterior.</td>
+        <td>200 OK / 404</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-del">DELETE</span></td>
+        <td><code>/api/cadetes/:id</code></td>
+        <td>Elimina registro de BD y destruye su archivo físico en <code>/assets</code>.</td>
+        <td>200 OK</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-post">POST</span></td>
+        <td><code>/api/inscripciones/:id/aprobar</code></td>
+        <td>Transacción ACID: Transforma recluta apto en cadete activo.</td>
+        <td>200 / 400 / 409</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-post">POST</span></td>
+        <td><code>/api/upload</code></td>
+        <td>Recibe imagen en base64, valida MIME y la guarda en disco.</td>
+        <td>201 Created</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Centro de Mando · Ejército del Perú</span>
+    <span>Página 3 de 4</span>
+  </div>
+
+  <!-- ==================== PÁGINA 4 ==================== -->
+  <div class="page-break"></div>
+
+  <h2><span class="num">8</span> Banco de Preguntas Difíciles del Jurado y Respuestas Maestras</h2>
+  <p>
+    Respuestas técnicas y precisas para las preguntas más frecuentes durante una sustentación:
+  </p>
+
+  <div class="faq-item">
+    <div class="faq-q">❓ Pregunta 1: "¿Por qué utilizaste un Pool de conexiones en lugar de una conexión directa?"</div>
+    <div class="faq-a">
+      <em>"Porque un servidor web atiende múltiples peticiones simultáneas. Una conexión individual obligaría a encolar las peticiones de forma síncrona, generando cuellos de botella. El <strong>Pool de conexiones</strong> de <code>mysql2</code> administra un conjunto precalentado de conexiones (10 en nuestro caso), entregando una conexión disponible a cada cliente y recuperándola de inmediato con <code>release()</code>."</em>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">❓ Pregunta 2: "¿Cómo garantizas la protección contra Inyección SQL?"</div>
+    <div class="faq-a">
+      <em>"En ningún punto del backend se realiza concatenación manual de strings en las sentencias SQL. El 100% de las operaciones se ejecutan mediante <strong>consultas preparadas con marcadores de posición <code>?</code></strong>. La librería <code>mysql2</code> envía la estructura SQL y los datos por canales separados al motor de base de datos, impidiendo cualquier ejecución arbitraria de código."</em>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">❓ Pregunta 3: "¿Por qué la aprobación requiere una Transacción ACID con FOR UPDATE?"</div>
+    <div class="faq-a">
+      <em>"Porque involucra dos tablas críticas (<code>inscripciones</code> y <code>cadetes</code>). ACID garantiza: <strong>Atomicidad</strong> (se ejecutan ambas o ninguna), <strong>Consistencia</strong> (se validan reglas como examen médico 'Apto'), <strong>Aislamiento</strong> (<code>FOR UPDATE</code> bloquea la fila para evitar que dos operadores aprueben al mismo postulante en paralelo) y <strong>Durabilidad</strong> (los cambios persisten con <code>commit()</code>)."</em>
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">❓ Pregunta 4: "¿Por qué activaste <code>dateStrings: true</code> en el driver de base de datos?"</div>
+    <div class="faq-a">
+      <em>"Por defecto, el driver convierte las fechas a objetos <code>Date</code> de JavaScript interpretados en UTC (Meridiano 0). Como el Perú está en la zona horaria UTC-5, al exportar a JSON las fechas retrocedían un día (el 24 de noviembre aparecía como 23 de noviembre). Con <code>dateStrings: true</code>, MySQL entrega la fecha como texto exacto <code>YYYY-MM-DD</code> sin desfases."</em>
+    </div>
+  </div>
+
+  <div class="card card-highlight" style="margin-top: 10px;">
+    <strong style="color: #7f0000; font-size: 8.8pt;">📋 Checklist Rápido para Antes de Sustentar:</strong>
+    <ul class="checklist">
+      <li>Verificar que MySQL esté activo en Laragon / XAMPP (puerto 3306).</li>
+      <li>Tener la terminal ubicada en la raíz: <code>c:\Users\jhanb\Music\ejercito-app</code>.</li>
+      <li>Ejecutar <code>npm run dev</code> y confirmar en consola: <code>Aplicación lista en: http://localhost:3000</code>.</li>
+      <li>Pestañas del navegador abiertas listas:
+        <code>http://localhost:3000</code> (App Web) y <code>http://localhost:3000/api/cadetes</code> (Endpoint REST en JSON).</li>
+      <li>Tener abierto <code>server/index.js</code> en la línea 123 en VS Code para mostrar la transacción ACID si el jurado pregunta.</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span>Centro de Mando · Ejército del Perú · Documento de Arquitectura y Defensa Técnica</span>
+    <span>Página 4 de 4</span>
+  </div>
+
+</body>
+</html>

@@ -1,55 +1,53 @@
 # Centro de Mando · Ejército del Perú
 
+Aplicación web profesional para la gestión de cadetes, rutinas, eventos e inscripciones del Ejército del Perú.
+
 ## Requisitos
-- Node.js 18 o superior (https://nodejs.org) — comprobar con `node -v`
-- XAMPP (MySQL/MariaDB) o MySQL 8
+- Node.js 18 o superior (https://nodejs.org)
+- MySQL / MariaDB (Laragon o XAMPP)
 
-## Puesta en marcha en Windows (PC nueva)
+---
 
-0. Descomprime el zip y abre una terminal (CMD) dentro de la carpeta `ejercito-app`.
+## Puesta en marcha
 
-1. Base de datos — abre XAMPP Control Panel y pulsa **Start** en MySQL, luego:
+1. **Base de datos:**
+   Importa el archivo maestro en phpMyAdmin o consola:
+   ```cmd
+   mysql -u root < database\ejercito_bd.sql
    ```
-   C:\xampp\mysql\bin\mysql.exe -u root < database\ejercito_bd.sql
-   ```
-   (Si root tiene contraseña: añade `-p`. También puedes importar el archivo desde
-   phpMyAdmin → Importar.)
 
-2. Backend — en una terminal:
-   ```
-   cd backend
-   copy .env.example .env
-   npm install
-   npm run dev
-   ```
-   Debe mostrar `API en http://localhost:3001`. Si MySQL tiene contraseña, escríbela en
-   `DB_PASS=` dentro de `backend\.env`.
-
-3. Frontend — en OTRA terminal (deja la del backend abierta):
-   ```
-   cd frontend
+2. **Iniciar la aplicación:**
+   ```powershell
    npm install
    npm run dev
    ```
 
-4. Abre http://localhost:5173
+3. **Abrir en tu navegador:**
+   👉 **http://localhost:3000**
 
-Las siguientes veces solo hace falta: encender MySQL en XAMPP, `npm run dev` en `backend`
-y `npm run dev` en `frontend`.
+---
 
-## Si ya tenías la versión anterior instalada
-No vuelvas a importar `ejercito_bd.sql` (borra la base). Ejecuta solo la migración:
+## Arquitectura Profesional del Proyecto
+
 ```
-C:\xampp\mysql\bin\mysql.exe -u root < database\migracion_imagenes.sql
+ejercito-app/
+├── assets/                  # Almacenamiento de fotografías y recursos multimedia
+├── database/
+│   └── ejercito_bd.sql      # Script SQL maestro (esquema + datos iniciales)
+├── server/                  # Backend / API REST (Node.js + Express)
+│   ├── db.js                # Conexión y Pool de MySQL
+│   └── index.js             # Rutas API, lógica de negocio y servidor Vite integrado
+├── src/                     # Frontend (React 18 + Vite)
+│   ├── components/          # Componentes visuales reutilizables (UI.jsx, Icons.jsx)
+│   ├── pages/               # Vistas principales (Dashboard, Rutinas, Calendario, Inscripciones)
+│   ├── services/            # Capa de consumo HTTP (api.js)
+│   ├── styles/              # Hojas de estilo globales (styles.css)
+│   ├── App.jsx              # Navegación y diseño maestro
+│   └── main.jsx             # Punto de entrada de React
+├── .env                     # Variables de entorno locales
+├── .env.example             # Plantilla de configuración
+├── .gitignore               # Archivos excluidos del control de versiones
+├── index.html               # Plantilla HTML principal
+├── package.json             # Dependencias y scripts del proyecto
+└── vite.config.js           # Configuración del empaquetador Vite
 ```
-
-## Problemas frecuentes
-- `ECONNREFUSED` / `Access denied`: MySQL apagado o contraseña incorrecta en `backend\.env`.
-- `Unknown database 'ejercito_bd'`: falta el paso 1.
-- `"npm" no se reconoce`: instala Node.js y abre una terminal nueva.
-- Puerto 3001 o 5173 ocupado: cierra la otra ventana que esté usando ese puerto.
-
-## Imágenes
-- Cadetes, rutinas, eventos y postulantes tienen campo de imagen (arrastrar, subir o pegar URL).
-- Se guardan en `backend/uploads/`; en la base solo queda la ruta.
-- Al aprobar un postulante, su fotografía pasa a la ficha del nuevo cadete.
