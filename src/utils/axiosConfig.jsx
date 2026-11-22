@@ -6,7 +6,7 @@ const AxiosAPI = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 15000,
+  timeout: 5000,
 });
 
 AxiosAPI.interceptors.request.use(
@@ -23,8 +23,7 @@ AxiosAPI.interceptors.request.use(
 AxiosAPI.interceptors.response.use(
   (response) => response,
   (error) => {
-    const message = error.response?.data?.error || error.message || 'Error de conexión';
-    console.error('[AxiosAPI Error]:', message);
+    // Si la API no está disponible, se maneja de forma silenciosa para activar el modo contingencia
     return Promise.reject(error);
   }
 );
