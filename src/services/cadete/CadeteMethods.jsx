@@ -1,5 +1,6 @@
 import AxiosAPI from '../../utils/axiosConfig';
 import { INITIAL_CADETES, getLocalStorageList, saveLocalStorageList } from '../../utils/mockData';
+import defaultAvatar from '../../asset/cadete-salazar.jpg';
 
 const STORAGE_KEY = 'cadetes_data';
 
@@ -39,7 +40,7 @@ export async function registrarCadete(cadeteData) {
       tactico: Number(cadeteData.tactico) || 70,
       disciplina: Number(cadeteData.disciplina) || 85,
       fecha_ingreso: cadeteData.fecha_ingreso || new Date().toISOString().split('T')[0],
-      imagen: cadeteData.imagen || '/assets/cadete-salazar.jpg',
+      imagen: cadeteData.imagen || defaultAvatar,
     };
     list.unshift(nuevo);
     saveLocalStorageList(STORAGE_KEY, list);

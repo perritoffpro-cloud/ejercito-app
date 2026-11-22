@@ -1,5 +1,6 @@
 import AxiosAPI from '../../utils/axiosConfig';
 import { INITIAL_INSCRIPCIONES, getLocalStorageList, saveLocalStorageList } from '../../utils/mockData';
+import defaultPostulanteImg from '../../asset/postulante-aguirre.jpg';
 
 const STORAGE_KEY = 'inscripciones_data';
 
@@ -30,7 +31,7 @@ export async function registrarInscripcion(inscripcionData) {
       eval_fisica: Number(inscripcionData.eval_fisica) || 0,
       talla_cm: Number(inscripcionData.talla_cm) || 170,
       peso_kg: Number(inscripcionData.peso_kg) || 70,
-      imagen: inscripcionData.imagen || '/assets/postulante-aguirre.jpg',
+      imagen: inscripcionData.imagen || defaultPostulanteImg,
     };
     list.unshift(nuevo);
     saveLocalStorageList(STORAGE_KEY, list);

@@ -1,5 +1,29 @@
 // Datos iniciales de contingencia (Offline Mock Data)
-// Permite que la aplicación web funcione de forma 100% interactiva incluso si la API backend está apagada
+// Las imágenes se importan directamente desde 'src/asset/' siguiendo el estándar Innovex Corp
+
+import fotoQuispe from '../asset/1873aa71-d347-4342-9724-9137dd9c1b87.jpg';
+import fotoRojas from '../asset/cadete-rojas.jpg';
+import fotoSalazar from '../asset/cadete-salazar.jpg';
+import fotoTello from '../asset/cadete-tello.jpg';
+import fotoMendoza from '../asset/cadete-mendoza.jpg';
+import fotoVargas from '../asset/cadete-vargas.jpg';
+import fotoCastillo from '../asset/cadete-castillo.jpg';
+import fotoFerrer from '../asset/cadete-ferrer.jpg';
+
+import fotoDiana from '../asset/rutina-diana.jpg';
+import fotoObstaculos from '../asset/rutina-obstaculos.jpg';
+import fotoOrdenCerrado from '../asset/rutina-orden-cerrado.jpg';
+import fotoTactica from '../asset/rutina-tactica.jpg';
+
+import fotoAscensos from '../asset/evento-ascensos.jpg';
+import fotoAyacucho from '../asset/evento-ayacucho.jpg';
+import fotoIzamiento from '../asset/evento-izamiento.jpg';
+import fotoSimulacro from '../asset/evento-simulacro.jpg';
+
+import fotoAguirre from '../asset/postulante-aguirre.jpg';
+import fotoAlvarado from '../asset/postulante-alvarado.jpg';
+import fotoCondor from '../asset/postulante-condor.jpg';
+import fotoLara from '../asset/postulante-lara.jpg';
 
 export const INITIAL_RANGOS = [
   { id: 1, nombre: 'Soldado', orden: 1, categoria: 'Tropa' },
@@ -30,7 +54,7 @@ export const INITIAL_CADETES = [
     disciplina: 70,
     unidad: 'Batallón de Instrucción Huánuco',
     fecha_ingreso: '2026-08-03',
-    imagen: '/assets/1873aa71-d347-4342-9724-9137dd9c1b87.jpg',
+    imagen: fotoQuispe,
   },
   {
     id: 2,
@@ -45,7 +69,7 @@ export const INITIAL_CADETES = [
     disciplina: 66,
     unidad: 'Batallón de Instrucción Huánuco',
     fecha_ingreso: '2026-08-03',
-    imagen: '/assets/cadete-rojas.jpg',
+    imagen: fotoRojas,
   },
   {
     id: 3,
@@ -60,7 +84,7 @@ export const INITIAL_CADETES = [
     disciplina: 82,
     unidad: 'Brigada de Montaña N.º 31',
     fecha_ingreso: '2026-03-15',
-    imagen: '/assets/cadete-salazar.jpg',
+    imagen: fotoSalazar,
   },
   {
     id: 4,
@@ -75,7 +99,7 @@ export const INITIAL_CADETES = [
     disciplina: 88,
     unidad: 'Brigada de Montaña N.º 31',
     fecha_ingreso: '2025-02-10',
-    imagen: '/assets/cadete-tello.jpg',
+    imagen: fotoTello,
   },
   {
     id: 5,
@@ -90,7 +114,7 @@ export const INITIAL_CADETES = [
     disciplina: 90,
     unidad: 'Regimiento de Infantería N.º 5',
     fecha_ingreso: '2023-06-21',
-    imagen: '/assets/cadete-mendoza.jpg',
+    imagen: fotoMendoza,
   },
   {
     id: 6,
@@ -105,7 +129,7 @@ export const INITIAL_CADETES = [
     disciplina: 94,
     unidad: 'Escuela Militar de Chorrillos',
     fecha_ingreso: '2022-01-12',
-    imagen: '/assets/cadete-vargas.jpg',
+    imagen: fotoVargas,
   },
   {
     id: 7,
@@ -120,7 +144,7 @@ export const INITIAL_CADETES = [
     disciplina: 91,
     unidad: 'Escuela Militar de Chorrillos',
     fecha_ingreso: '2020-09-01',
-    imagen: '/assets/cadete-castillo.jpg',
+    imagen: fotoCastillo,
   },
   {
     id: 8,
@@ -135,7 +159,7 @@ export const INITIAL_CADETES = [
     disciplina: 97,
     unidad: 'Comando de Operaciones Especiales',
     fecha_ingreso: '2017-04-18',
-    imagen: '/assets/cadete-ferrer.jpg',
+    imagen: fotoFerrer,
   },
 ];
 
@@ -151,7 +175,7 @@ export const INITIAL_RUTINAS = [
     rango_id: null,
     nivel: 'Todos',
     descripcion: 'Trote de 5 km, flexiones, abdominales y barras en patio principal.',
-    imagen: '/assets/rutina-diana.jpg',
+    imagen: fotoDiana,
   },
   {
     id: 2,
@@ -164,7 +188,7 @@ export const INITIAL_RUTINAS = [
     rango_id: 1,
     nivel: 'Nuevo',
     descripcion: 'Circuito con muro de asalto, cuerda suspendida y túnel de arrastre.',
-    imagen: '/assets/rutina-obstaculos.jpg',
+    imagen: fotoObstaculos,
   },
   {
     id: 3,
@@ -177,7 +201,7 @@ export const INITIAL_RUTINAS = [
     rango_id: null,
     nivel: 'Nuevo',
     descripcion: 'Formaciones marciales, protocolo ceremonial y desarme de armamento reglamentario.',
-    imagen: '/assets/rutina-orden-cerrado.jpg',
+    imagen: fotoOrdenCerrado,
   },
   {
     id: 4,
@@ -190,7 +214,7 @@ export const INITIAL_RUTINAS = [
     rango_id: 5,
     nivel: 'Avanzado',
     descripcion: 'Planeamiento militar, navegación terrestre con brújula y conducción de patrullas.',
-    imagen: '/assets/rutina-tactica.jpg',
+    imagen: fotoTactica,
   },
 ];
 
@@ -203,7 +227,7 @@ export const INITIAL_EVENTOS = [
     hora: '10:00',
     lugar: 'Patio de Honor - Escuela Militar Chorrillos',
     descripcion: 'Graduación de cadetes y ascenso al grado militar inmediato superior con altas autoridades.',
-    imagen: '/assets/evento-ascensos.jpg',
+    imagen: fotoAscensos,
   },
   {
     id: 2,
@@ -213,7 +237,7 @@ export const INITIAL_EVENTOS = [
     hora: '09:00',
     lugar: 'Pampa de la Quinua, Ayacucho',
     descripcion: 'Homenaje cívico patriótico solemne al heroísmo y la consolidación de la independencia.',
-    imagen: '/assets/evento-ayacucho.jpg',
+    imagen: fotoAyacucho,
   },
   {
     id: 3,
@@ -223,7 +247,7 @@ export const INITIAL_EVENTOS = [
     hora: '08:00',
     lugar: 'Plaza Bolognesi, Lima',
     descripcion: 'Ceremonia castrense con la banda de música militar y delegaciones de las FF.AA.',
-    imagen: '/assets/evento-izamiento.jpg',
+    imagen: fotoIzamiento,
   },
   {
     id: 4,
@@ -233,7 +257,7 @@ export const INITIAL_EVENTOS = [
     hora: '06:00',
     lugar: 'Base de Operaciones Especiales',
     descripcion: 'Ejercicio nocturno y diurno de despliegue rápido ante escenarios de emergencia.',
-    imagen: '/assets/evento-simulacro.jpg',
+    imagen: fotoSimulacro,
   },
 ];
 
@@ -251,7 +275,7 @@ export const INITIAL_INSCRIPCIONES = [
     eval_medica: 'Apto',
     eval_fisica: 88,
     estado: 'Aprobado',
-    imagen: '/assets/postulante-aguirre.jpg',
+    imagen: fotoAguirre,
   },
   {
     id: 2,
@@ -266,7 +290,7 @@ export const INITIAL_INSCRIPCIONES = [
     eval_medica: 'Apto',
     eval_fisica: 82,
     estado: 'Aprobado',
-    imagen: '/assets/postulante-alvarado.jpg',
+    imagen: fotoAlvarado,
   },
   {
     id: 3,
@@ -281,7 +305,7 @@ export const INITIAL_INSCRIPCIONES = [
     eval_medica: 'Pendiente',
     eval_fisica: 70,
     estado: 'Pendiente',
-    imagen: '/assets/postulante-condor.jpg',
+    imagen: fotoCondor,
   },
   {
     id: 4,
@@ -296,7 +320,7 @@ export const INITIAL_INSCRIPCIONES = [
     eval_medica: 'Pendiente',
     eval_fisica: 75,
     estado: 'Pendiente',
-    imagen: '/assets/postulante-lara.jpg',
+    imagen: fotoLara,
   },
 ];
 
@@ -308,7 +332,13 @@ export function getLocalStorageList(key, initial) {
       localStorage.setItem(key, JSON.stringify(initial));
       return initial;
     }
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    // Si la data en cache tiene rutas viejas (/assets/), migrar a los imports reales
+    if (Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0].imagen === 'string' && parsed[0].imagen.startsWith('/assets/')) {
+      localStorage.setItem(key, JSON.stringify(initial));
+      return initial;
+    }
+    return parsed;
   } catch {
     return initial;
   }

@@ -1,5 +1,6 @@
 import AxiosAPI from '../../utils/axiosConfig';
 import { INITIAL_RUTINAS, getLocalStorageList, saveLocalStorageList } from '../../utils/mockData';
+import defaultRutinaImg from '../../asset/rutina-diana.jpg';
 
 const STORAGE_KEY = 'rutinas_data';
 
@@ -26,7 +27,7 @@ export async function registrarRutina(rutinaData) {
       ...rutinaData,
       id: Date.now(),
       duracion_min: Number(rutinaData.duracion_min) || 60,
-      imagen: rutinaData.imagen || '/assets/rutina-diana.jpg',
+      imagen: rutinaData.imagen || defaultRutinaImg,
     };
     list.unshift(nuevo);
     saveLocalStorageList(STORAGE_KEY, list);

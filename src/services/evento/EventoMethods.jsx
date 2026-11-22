@@ -1,5 +1,6 @@
 import AxiosAPI from '../../utils/axiosConfig';
 import { INITIAL_EVENTOS, getLocalStorageList, saveLocalStorageList } from '../../utils/mockData';
+import defaultEventoImg from '../../asset/evento-ascensos.jpg';
 
 const STORAGE_KEY = 'eventos_data';
 
@@ -25,7 +26,7 @@ export async function registrarEvento(eventoData) {
     const nuevo = {
       ...eventoData,
       id: Date.now(),
-      imagen: eventoData.imagen || '/assets/evento-ascensos.jpg',
+      imagen: eventoData.imagen || defaultEventoImg,
     };
     list.unshift(nuevo);
     saveLocalStorageList(STORAGE_KEY, list);
