@@ -1,122 +1,83 @@
 # Centro de Mando · Ejército del Perú
-Sistema web Full-Stack con arquitectura **MVC (Modelo - Vista - Controlador)** para la gestión táctica de cadetes, rutinas de entrenamiento, eventos institucionales y admisiones del Ejército del Perú.
+Sistema web Full-Stack empresarial con arquitectura **Innovex Corp - Estándar de Desarrollo Premium** (Feature-Driven Architecture en React + Vite y API RESTful en Node.js/Express).
 
 ---
 
-## 🏛️ Arquitectura Técnica del Proyecto
+## 🏛️ Arquitectura del Sistema
 
-El sistema está estructurado bajo las mejores prácticas de la industria de software, separando el **Backend (API RESTful en capas)** y el **Frontend (SPA React con Vite)**:
+El proyecto sigue una separación total entre la **Web Pública Institucional** (admisión, convocatorias y civismo) y la **Intranet / Centro de Mando** (gestión de oficiales, cadetes y entrenamientos):
 
 ```text
 ejercito-app/
 │
-├── backend/                       # 🟢 SERVIDOR Y API REST (Arquitectura MVC)
+├── 🟢 backend/                        # API RESTful MVC (Node.js + Express)
 │   ├── src/
-│   │   ├── config/                # Configuración de base de datos y entorno
-│   │   │   └── db.js              # Pool de conexiones persistentes MySQL2
-│   │   ├── models/                # Capa de Acceso a Datos (Consultas SQL parametrizadas)
-│   │   │   ├── cadeteModel.js
-│   │   │   ├── rutinaModel.js
-│   │   │   ├── eventoModel.js
-│   │   │   ├── inscripcionModel.js # Transacciones ACID con bloqueo FOR UPDATE
-│   │   │   └── rangoModel.js
-│   │   ├── controllers/           # Capa de Lógica de Negocio y manejo HTTP (req, res)
-│   │   │   ├── cadeteController.js
-│   │   │   ├── rutinaController.js
-│   │   │   ├── eventoController.js
-│   │   │   ├── inscripcionController.js
-│   │   │   ├── rangoController.js
-│   │   │   └── uploadController.js
-│   │   ├── routes/                # Capa de Enrutamiento RESTful
-│   │   │   ├── cadeteRoutes.js
-│   │   │   ├── rutinaRoutes.js
-│   │   │   ├── eventoRoutes.js
-│   │   │   ├── inscripcionRoutes.js
-│   │   │   ├── rangoRoutes.js
-│   │   │   ├── uploadRoutes.js
-│   │   │   └── index.js           # Agrupador maestro (/api/...)
-│   │   ├── middlewares/           # Middlewares globales
-│   │   │   └── errorHandler.js    # Manejador centralizado de errores
-│   │   ├── utils/                 # Utilidades del servidor
-│   │   │   └── fileManager.js     # Eliminación de imágenes huérfanas en disco
-│   │   ├── app.js                 # Configuración de Express, CORS y estáticos
-│   │   └── server.js              # Punto de arranque HTTP (Puerto 3000)
-│   ├── package.json
-│   └── .env
-│
-├── frontend/                      # 🔵 CLIENTE WEB (React 18 + Vite)
-│   ├── src/
-│   │   ├── components/            # Componentes visuales reutilizables
-│   │   │   ├── Icons.jsx          # Iconografía SVG
-│   │   │   └── UI.jsx             # Tarjetas, modales, badges, formularios
-│   │   ├── pages/                 # Vistas principales del sistema
-│   │   │   ├── Dashboard.jsx      # Gestión y métricas de cadetes
-│   │   │   ├── Rutinas.jsx        # Entrenamientos físicos y tácticos
-│   │   │   ├── Calendario.jsx     # Ceremonias y eventos oficiales
-│   │   │   └── Inscripciones.jsx  # Admisión y aprobación de postulantes
-│   │   ├── services/
-│   │   │   └── api.js             # Capa cliente de consumo HTTP (Fetch)
-│   │   ├── styles/
-│   │   │   └── styles.css         # Diseño institucional militar y responsive
-│   │   ├── App.jsx                # Componente raíz y navegación de vistas
-│   │   └── main.jsx               # Punto de entrada de React en el DOM
-│   ├── index.html                 # Plantilla HTML con tipografía Inter y escudo
-│   ├── vite.config.js             # Configuración de Vite con proxy hacia /api
+│   │   ├── config/ (db.js)            # Pool de conexiones MySQL2
+│   │   ├── models/                    # Consultas SQL y Transacciones ACID
+│   │   ├── controllers/               # Manejo de peticiones HTTP
+│   │   ├── routes/                    # Endpoints REST (/api/...)
+│   │   ├── middlewares/               # Manejo centralizado de errores
+│   │   ├── utils/                     # Limpieza física de imágenes en disco
+│   │   └── server.js                  # Puerto 3000
 │   └── package.json
 │
-├── assets/                        # 🖼️ Banco de imágenes militares institucionales
-├── database/                      # 💾 Base de datos relacional
-│   └── ejercito_bd.sql            # Script DDL/DML maestro (MySQL 8 / InnoDB)
-├── docs/                          # 📚 Documentación técnica
-│   ├── guia_exposicion.html       # Documento HTML print-ready
-│   └── Guia_Exposicion_Backend_Ejercito.pdf # PDF oficial para la sustentación
-├── package.json                   # Orquestador raíz con Concurrently
-└── README.md                      # Documentación del proyecto
+├── 🔵 frontend/                       # Cliente React 18 + Vite (Innovex Corp Standard)
+│   ├── src/
+│   │   ├── asset/                     # Logos y recursos gráficos
+│   │   ├── components/                # Componentes transversales
+│   │   │   ├── SidebarComponent.jsx   # Barra lateral de navegación militar
+│   │   │   ├── TopNavbar.jsx          # Barra superior con datos del oficial
+│   │   │   ├── Loading.jsx            # Spinner institucional
+│   │   │   ├── Notificaciones.jsx     # Alertas toast
+│   │   │   └── landing/               # Header, Hero y Footer de la web pública
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx        # Sesión y roles de comando
+│   │   ├── environment/
+│   │   │   └── API.jsx                # URL base (/api)
+│   │   ├── features/                  # Dominio de Negocio (Co-locación de Hermanos)
+│   │   │   ├── public/pages/          # Web pública del Ejército
+│   │   │   │   ├── LandingPage.jsx    # Portal de bienvenida y beneficios
+│   │   │   │   └── PostulacionPage.jsx # Ficha de inscripción militar para ciudadanos
+│   │   │   └── admin/pages/           # Centro de Mando Militar
+│   │   │       ├── DashboardPage.jsx  # KPI Cards y resumen táctico
+│   │   │       ├── CadetePage.jsx     # Orquestador de Cadetes
+│   │   │       ├── cadetePage/        # Listado, Registrar, Editar, Eliminar
+│   │   │       ├── RutinaPage.jsx     # Orquestador de Entrenamientos
+│   │   │       ├── rutinaPage/        # Listado, Registrar, Editar, Eliminar
+│   │   │       ├── EventoPage.jsx     # Orquestador de Calendario
+│   │   │       ├── eventoPage/        # Listado, Registrar, Editar, Eliminar
+│   │   │       ├── InscripcionPage.jsx# Orquestador de Admisión
+│   │   │       └── inscripcionPage/   # Listado (con Aprobación ACID), Registrar, Editar, Eliminar
+│   │   ├── routes/                    # Enrutamiento React Router DOM
+│   │   │   ├── MyRoutes.jsx           # Mapeo de rutas (/ y /admin/...)
+│   │   │   └── PrivateRoute.jsx       # Layout protegido con Sidebar y TopNavbar
+│   │   ├── services/                  # Servicios desacoplados por entidad
+│   │   │   ├── auth/authMethods.jsx
+│   │   │   ├── cadete/CadeteMethods.jsx
+│   │   │   ├── rutina/RutinaMethods.jsx
+│   │   │   ├── evento/EventoMethods.jsx
+│   │   │   ├── inscripcion/InscripcionMethods.jsx
+│   │   │   └── rango/RangoMethods.jsx
+│   │   ├── styles/                    # styles.css
+│   │   └── utils/                     # axiosConfig.jsx, formatearFecha.jsx, obtenerMensajeError.jsx
+│   └── package.json
+│
+├── 🖼️ assets/                         # Banco de imágenes militares institucionales
+├── 💾 database/                       # ejercito_bd.sql (DDL/DML con vistas e índices B-Tree)
+├── 📚 docs/                           # Documentación y Guia_Exposicion_Backend_Ejercito.pdf
+└── package.json                       # Scripts globales con Concurrently
 ```
 
 ---
 
-## 🚀 Puesta en Marcha Rápida
+## 🚀 Puesta en Marcha
 
-### 1. Requisitos Previos
-- **Node.js** v18 o superior.
-- **MySQL / MariaDB** (en Laragon, XAMPP o servicio local en el puerto `3306`).
-
-### 2. Importar la Base de Datos
-Asegúrate de que MySQL esté iniciado y ejecuta en tu terminal:
-```bash
-mysql -u root < database/ejercito_bd.sql
-```
-
-### 3. Iniciar Todo el Sistema (Backend + Frontend)
-En la carpeta raíz del proyecto, ejecuta un solo comando:
+Para iniciar el Backend y el Frontend en paralelo con un solo comando:
 ```bash
 npm run dev
 ```
 
-Esto levantará automáticamente ambos servicios en paralelo:
-- **Backend API:** `http://localhost:3000/api`
-- **Frontend Web:** `http://localhost:5173` *(con proxy automático hacia el backend)*
-
----
-
-## 🛠️ Comandos Individuales (Opcional)
-
-Si deseas correr cada parte en terminales separadas:
-
-| Comando | Descripción |
-| :--- | :--- |
-| `npm run dev` | Inicia Backend (3000) y Frontend (5173) en simultáneo. |
-| `npm run dev:backend` | Inicia únicamente la API REST de Express. |
-| `npm run dev:frontend` | Inicia únicamente el servidor de desarrollo de Vite. |
-| `npm run build` | Compila el Frontend a HTML/CSS/JS optimizado para producción. |
-
----
-
-## 🛡️ Características Técnicas Destacadas
-
-1. **Arquitectura MVC Pura:** Desacoplamiento total entre modelos SQL (`models/`), lógica de negocio (`controllers/`) y endpoints HTTP (`routes/`).
-2. **Seguridad contra Inyección SQL:** 100% de consultas preparadas con marcadores de posición (`?`).
-3. **Transacciones ACID con Bloqueo de Fila:** En la aprobación de postulantes (`POST /api/inscripciones/:id/aprobar`), se utiliza `SELECT ... FOR UPDATE` para evitar condiciones de carrera (Race Conditions), asegurando atomicidad con `commit()` y `rollback()`.
-4. **Pool de Conexiones Optimizado:** Configurado en `backend/src/config/db.js` con límite de 10 conexiones concurrentes y `dateStrings: true` para prevenir desfases de zonas horarias en fechas.
-5. **Higiene de Archivos:** Las imágenes anteriores se eliminan físicamente del disco al actualizar o borrar registros, evitando archivos huérfanos.
+- **Portal Web Institucional:** `http://localhost:5173`
+- **Ficha de Postulación:** `http://localhost:5173/postulacion`
+- **Centro de Mando (Intranet):** `http://localhost:5173/admin`
+- **API REST Backend:** `http://localhost:3000/api`
