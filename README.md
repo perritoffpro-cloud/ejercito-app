@@ -1,83 +1,114 @@
-# Centro de Mando · Ejército del Perú
-Sistema web Full-Stack empresarial con arquitectura **Innovex Corp - Estándar de Desarrollo Premium** (Feature-Driven Architecture en React + Vite y API RESTful en Node.js/Express).
+# Centro de Mando · Ejército del Perú (Web Institucional & Panel de Comando)
+
+Aplicación web empresarial desarrollada con **React 18 + Vite** bajo el estándar **Innovex Corp - Estándar de Desarrollo Premium (Feature-Driven Architecture)**.
 
 ---
 
-## 🏛️ Arquitectura del Sistema
+## 🏛️ Estructura del Proyecto
 
-El proyecto sigue una separación total entre la **Web Pública Institucional** (admisión, convocatorias y civismo) y la **Intranet / Centro de Mando** (gestión de oficiales, cadetes y entrenamientos):
+El proyecto está organizado en la raíz con el estándar corporativo de Innovex Corp:
 
 ```text
 ejercito-app/
 │
-├── 🟢 backend/                        # API RESTful MVC (Node.js + Express)
-│   ├── src/
-│   │   ├── config/ (db.js)            # Pool de conexiones MySQL2
-│   │   ├── models/                    # Consultas SQL y Transacciones ACID
-│   │   ├── controllers/               # Manejo de peticiones HTTP
-│   │   ├── routes/                    # Endpoints REST (/api/...)
-│   │   ├── middlewares/               # Manejo centralizado de errores
-│   │   ├── utils/                     # Limpieza física de imágenes en disco
-│   │   └── server.js                  # Puerto 3000
-│   └── package.json
+├── .agents/                      # Reglas y plantillas maestras de desarrollo
+│   └── rules/                    # Innovex Corp Skill, FrontEnd y BackEnd Masters
 │
-├── 🔵 frontend/                       # Cliente React 18 + Vite (Innovex Corp Standard)
-│   ├── src/
-│   │   ├── asset/                     # Logos y recursos gráficos
-│   │   ├── components/                # Componentes transversales
-│   │   │   ├── SidebarComponent.jsx   # Barra lateral de navegación militar
-│   │   │   ├── TopNavbar.jsx          # Barra superior con datos del oficial
-│   │   │   ├── Loading.jsx            # Spinner institucional
-│   │   │   ├── Notificaciones.jsx     # Alertas toast
-│   │   │   └── landing/               # Header, Hero y Footer de la web pública
-│   │   ├── context/
-│   │   │   └── AuthContext.jsx        # Sesión y roles de comando
-│   │   ├── environment/
-│   │   │   └── API.jsx                # URL base (/api)
-│   │   ├── features/                  # Dominio de Negocio (Co-locación de Hermanos)
-│   │   │   ├── public/pages/          # Web pública del Ejército
-│   │   │   │   ├── LandingPage.jsx    # Portal de bienvenida y beneficios
-│   │   │   │   └── PostulacionPage.jsx # Ficha de inscripción militar para ciudadanos
-│   │   │   └── admin/pages/           # Centro de Mando Militar
-│   │   │       ├── DashboardPage.jsx  # KPI Cards y resumen táctico
-│   │   │       ├── CadetePage.jsx     # Orquestador de Cadetes
-│   │   │       ├── cadetePage/        # Listado, Registrar, Editar, Eliminar
-│   │   │       ├── RutinaPage.jsx     # Orquestador de Entrenamientos
-│   │   │       ├── rutinaPage/        # Listado, Registrar, Editar, Eliminar
-│   │   │       ├── EventoPage.jsx     # Orquestador de Calendario
-│   │   │       ├── eventoPage/        # Listado, Registrar, Editar, Eliminar
-│   │   │       ├── InscripcionPage.jsx# Orquestador de Admisión
-│   │   │       └── inscripcionPage/   # Listado (con Aprobación ACID), Registrar, Editar, Eliminar
-│   │   ├── routes/                    # Enrutamiento React Router DOM
-│   │   │   ├── MyRoutes.jsx           # Mapeo de rutas (/ y /admin/...)
-│   │   │   └── PrivateRoute.jsx       # Layout protegido con Sidebar y TopNavbar
-│   │   ├── services/                  # Servicios desacoplados por entidad
-│   │   │   ├── auth/authMethods.jsx
-│   │   │   ├── cadete/CadeteMethods.jsx
-│   │   │   ├── rutina/RutinaMethods.jsx
-│   │   │   ├── evento/EventoMethods.jsx
-│   │   │   ├── inscripcion/InscripcionMethods.jsx
-│   │   │   └── rango/RangoMethods.jsx
-│   │   ├── styles/                    # styles.css
-│   │   └── utils/                     # axiosConfig.jsx, formatearFecha.jsx, obtenerMensajeError.jsx
-│   └── package.json
+├── public/                       # Recursos estáticos servidos directamente por Vite
+│   └── assets/                   # Fotografías e insignias institucionales
 │
-├── 🖼️ assets/                         # Banco de imágenes militares institucionales
-├── 💾 database/                       # ejercito_bd.sql (DDL/DML con vistas e índices B-Tree)
-├── 📚 docs/                           # Documentación y Guia_Exposicion_Backend_Ejercito.pdf
-└── package.json                       # Scripts globales con Concurrently
+├── src/                          # Código fuente de la aplicación React
+│   ├── asset/                    # Recursos visuales y logotipos
+│   ├── components/               # Componentes transversales
+│   │   ├── SidebarComponent.jsx  # Barra de navegación lateral del Centro de Mando
+│   │   ├── TopNavbar.jsx         # Encabezado institucional con perfil de oficial
+│   │   ├── Loading.jsx           # Spinner y estado de carga institucional
+│   │   ├── Notificaciones.jsx    # Alertas Toast del sistema
+│   │   └── landing/              # Header, Hero y Footer de la Web Pública
+│   │
+│   ├── context/                  # Estados globales
+│   │   └── AuthContext.jsx       # Gestión de autenticación, sesión y roles de mando
+│   │
+│   ├── environment/              # Variables y configuración de entorno
+│   │   └── API.jsx               # Endpoints y URL base (/api)
+│   │
+│   ├── features/                 # Módulos por dominio de negocio (Innovex Architecture)
+│   │   ├── public/pages/         # Portal Público Ciudadano
+│   │   │   ├── LandingPage.jsx   # Página de inicio institucional y convocatorias
+│   │   │   └── PostulacionPage.jsx # Ficha de inscripción y registro de postulantes
+│   │   │
+│   │   └── admin/pages/          # Centro de Mando Militar (Intranet)
+│   │       ├── DashboardPage.jsx # Métricas clave, KPIs y resumen de operaciones
+│   │       ├── CadetePage.jsx    # Orquestador del módulo de Cadetes
+│   │       │   └── cadetePage/   # ListadoCadete, RegistrarCadeteForm, etc.
+│   │       ├── RutinaPage.jsx    # Orquestador de Instrucción Militar
+│   │       │   └── rutinaPage/   # ListadoRutina, RegistrarRutinaForm, etc.
+│   │       ├── EventoPage.jsx    # Orquestador de Ceremonias y Maniobras
+│   │       │   └── eventoPage/   # ListadoEvento, RegistrarEventoForm, etc.
+│   │       └── InscripcionPage.jsx # Orquestador de Postulaciones y Admisión
+│   │           └── inscripcionPage/ # ListadoInscripcion, Registrar, Editar, Eliminar
+│   │
+│   ├── routes/                   # Enrutamiento de la aplicación
+│   │   ├── MyRoutes.jsx          # Rutas públicas y protegidas con React Router
+│   │   └── PrivateRoute.jsx      # Guardián de seguridad para acceso al comando
+│   │
+│   ├── services/                 # Servicios y llamadas HTTP con Axios
+│   │   ├── auth/authMethods.jsx
+│   │   ├── cadete/CadeteMethods.jsx
+│   │   ├── evento/EventoMethods.jsx
+│   │   ├── inscripcion/InscripcionMethods.jsx
+│   │   ├── rango/RangoMethods.jsx
+│   │   └── rutina/RutinaMethods.jsx
+│   │
+│   ├── styles/                   # Sistema de diseño y estilos militares
+│   │   └── styles.css            # Tipografía, paleta de colores y componentes
+│   │
+│   └── utils/                    # Funciones utilitarias
+│       ├── axiosConfig.jsx       # Instancia configurada de Axios
+│       ├── formatearFecha.jsx    # Formateador de fechas
+│       └── obtenerMensajeError.jsx # Manejo estándar de errores
+│
+├── database_design.md            # Especificación y diseño ERD de la base de datos
+├── index.html                    # Entry point HTML de Vite
+├── package.json                  # Dependencias y scripts de la aplicación Web
+└── vite.config.js                # Configuración de Vite y proxy para desarrollo
 ```
 
 ---
 
 ## 🚀 Puesta en Marcha
 
-Para iniciar el Backend y el Frontend en paralelo con un solo comando:
+### Requisitos
+- **Node.js**: v18.0.0 o superior
+- **npm**: v9.0.0 o superior
+
+### Instalación de dependencias
+```bash
+npm install
+```
+
+### Ejecución en Modo Desarrollo
 ```bash
 npm run dev
 ```
+La aplicación iniciará en `http://localhost:5173`.
 
-- **Portal Web Institucional:** `http://localhost:5173`
-- **Ficha de Postulación:** `http://localhost:5173/postulacion`
-- **Centro de Mando (Intranet):** `http://localhost:5173/admin`
-- **API REST Backend:** `http://localhost:3000/api`
+### Compilación para Producción
+```bash
+npm run build
+```
+Genera los archivos optimizados listos para despliegue en la carpeta `dist/`.
+
+---
+
+## 🛡️ Rutas de la Aplicación
+
+| Ruta | Acceso | Descripción |
+| :--- | :--- | :--- |
+| `/` | Público | Portal web institucional del Ejército del Perú |
+| `/postulacion` | Público | Formulario de postulación ciudadana para nuevos reclutas |
+| `/admin` | Protegido | Dashboard general del Centro de Mando |
+| `/admin/cadetes` | Protegido | Gestión del escalafón militar, rendimiento y cadetes |
+| `/admin/rutinas` | Protegido | Programación de rutinas e instrucción de combate |
+| `/admin/eventos` | Protegido | Calendario de efemérides, maniobras y ceremonias |
+| `/admin/inscripciones` | Protegido | Triaje médico, evaluación física y admisión |
