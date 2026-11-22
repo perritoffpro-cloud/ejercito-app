@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Shield, Lock, User, Eye, EyeOff, ArrowLeft, KeyRound, AlertCircle, CheckCircle } from 'lucide-react';
+import { Shield, Lock, User, Eye, EyeOff, ArrowLeft, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
 
 export default function LoginPage() {
-  const [usuario, setUsuario] = useState('admin@ejercito.mil.pe');
-  const [password, setPassword] = useState('admin1234');
+  const [usuario, setUsuario] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -36,12 +36,6 @@ export default function LoginPage() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleCargarCredencialesDemo = () => {
-    setUsuario('admin@ejercito.mil.pe');
-    setPassword('admin1234');
-    setError('');
   };
 
   return (
@@ -110,23 +104,6 @@ export default function LoginPage() {
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
-          </div>
-
-          {/* Tarjeta de ayuda rápida con credenciales del sistema */}
-          <div className="login-demo-creds">
-            <div className="demo-creds-info">
-              <span className="demo-creds-title">Acceso Oficial Autorizado:</span>
-              <span className="demo-creds-detail">admin@ejercito.mil.pe / admin1234</span>
-            </div>
-            <button
-              type="button"
-              className="demo-autofill-btn"
-              onClick={handleCargarCredencialesDemo}
-              title="Cargar credenciales automáticamente"
-            >
-              <KeyRound size={13} />
-              <span>Autocompletar</span>
-            </button>
           </div>
 
           <button type="submit" className="login-submit-btn" disabled={loading}>
