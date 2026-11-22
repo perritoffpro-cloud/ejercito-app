@@ -1,15 +1,23 @@
 import React from 'react';
-import { Menu, Bell, Shield, UserCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Menu, Bell, Shield, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function TopNavbar({ onToggleSidebar }) {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
   const fechaHoy = new Date().toLocaleDateString('es-PE', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <header className="topnavbar">
@@ -40,6 +48,15 @@ export default function TopNavbar({ onToggleSidebar }) {
             <span className="chip-subtitle">{user?.unidad || 'Comando General'}</span>
           </div>
         </div>
+
+        <button
+          onClick={handleLogout}
+          className="topnavbar-logout-btn"
+          title="Cerrar Sesión Militar"
+        >
+          <LogOut size={16} />
+          <span>Salir</span>
+        </button>
       </div>
     </header>
   );

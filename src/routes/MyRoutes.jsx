@@ -7,6 +7,7 @@ import LandingPage from '../features/public/pages/LandingPage';
 import PostulacionPage from '../features/public/pages/PostulacionPage';
 
 // Páginas Administrativas (Centro de Mando)
+import LoginPage from '../features/admin/pages/LoginPage';
 import DashboardPage from '../features/admin/pages/DashboardPage';
 import CadetePage from '../features/admin/pages/CadetePage';
 import RutinaPage from '../features/admin/pages/RutinaPage';
@@ -19,8 +20,9 @@ export default function MyRoutes() {
       {/* 🟢 RUTAS PÚBLICAS */}
       <Route path="/" element={<LandingPage />} />
       <Route path="/postulacion" element={<PostulacionPage />} />
+      <Route path="/login" element={<LoginPage />} />
 
-      {/* 🔴 RUTAS PRIVADAS (Centro de Mando con Sidebar & TopNavbar) */}
+      {/* 🔴 RUTAS PRIVADAS (Centro de Mando con Guardián de Autenticación) */}
       <Route path="/admin" element={<PrivateRoute />}>
         <Route index element={<DashboardPage />} />
         <Route path="cadetes" element={<CadetePage />} />

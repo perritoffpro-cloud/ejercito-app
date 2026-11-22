@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Lock, Send } from 'lucide-react';
+import { Shield, Lock, Send, UserCheck } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Header() {
+  const { isAuthenticated, user } = useAuth();
+
   return (
     <header className="public-header">
       <div className="header-limit">
@@ -27,8 +30,14 @@ export default function Header() {
             <Send size={15} />
             <span>Postula Aquí</span>
           </Link>
-          <Link to="/admin" className="nav-btn-intranet" title="Acceso a Oficiales y Mando">
-            <Lock size={15} />
+          
+          {/* Botón que abre el Login Militar para acceder al Centro de Mando */}
+          <Link
+            to={isAuthenticated ? "/admin" : "/login"}
+            className="nav-btn-intranet"
+            title={isAuthenticated ? `Sesión Activa: ${user?.rango}` : "Iniciar Sesión en el Centro de Mando"}
+          >
+            {isAuthenticated ? <UserCheck size={15} /> : <Lock size={15} />}
             <span>Centro de Mando</span>
           </Link>
         </nav>
